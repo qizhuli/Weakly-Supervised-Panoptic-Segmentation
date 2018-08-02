@@ -29,7 +29,7 @@
 
 function modified_label = apply_bbox_prior(pred_label, bbox_masks, thing_classes, ignore_label)
 modified_label = pred_label;
-for j = reshape(thing_classes, 1, []);
+for j = reshape(thing_classes, 1, [])
     if isempty(bbox_masks{j+1})
         modified_label(modified_label == j) = ignore_label;
     else
