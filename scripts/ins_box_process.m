@@ -27,9 +27,10 @@
 %  - See scripts/run_sub.m
 % ------------------------------------------------------------------------
 
-function ins_label = ins_box_process(sem_label, annotation, ignore_label)
+function [ins_label, ins_info] = ins_box_process(sem_label, annotation, ignore_label)
 
 ins_label = uint8(zeros(size(sem_label)));
+ins_info = struct;
 % transfer all ignore region
 ins_label(sem_label==ignore_label) = ignore_label;
 
@@ -42,15 +43,17 @@ bboxes = reshape(extractfield(annotation.object, 'bbox'), 4, [])';
 classes = extractfield(annotation.object, 'class')';
 [~, unique_indices, ~] = unique([classes, bboxes], 'rows', 'stable');
 
+ins_counter = 0;
+
 for i = unique_indices'
-    
-    ins_id = i;
     
     % thing grp is not an instance
     is_grp = annotation.object(i).is_grp;
     if is_grp
         continue;
     end
+    
+    ins_counter = ins_counter + 1;
     
     bbox = annotation.object(i).bbox;
     class_id = annotation.object(i).class;
@@ -65,14 +68,18 @@ for i = unique_indices'
     % for non-ignore region, if gt_id = class_id && gt_id != 0, then gt_id :-> ignore
     ins_gt_inside_bbox(and(sem_gt_inside_bbox==class_id, ins_gt_inside_bbox~=0)) = ignore_label;
     % for non-ignore region, if gt_id = class_id && gt_id = 0, then gt_id :-> ins_id
-    ins_gt_inside_bbox(and(sem_gt_inside_bbox==class_id, ins_gt_inside_bbox==0)) = ins_id;
+    ins_gt_inside_bbox(and(sem_gt_inside_bbox==class_id, ins_gt_inside_bbox==0)) = ins_counter;
+    % record info in ins_info
+    ins_info(ins_counter).ins_id = ins_counter;
+    ins_info(ins_counter).name = annotation.object(i).name;
+    ins_info(ins_counter).class = annotation.object(i).class;
     
     ins_label(ymin:ymax, xmin:xmax) = ins_gt_inside_bbox;
 end
 
 % sanity check: all instance labels should be present
 ins_gt_labels = setdiff(unique(ins_label(:)), [0, ignore_label]);
-if ~isempty(setdiff(1:ins_id, ins_gt_labels))
+if ~isempty(setdiff(1:ins_counter, ins_gt_labels))
     warning('sanity not preserved');
 end
 

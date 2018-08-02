@@ -42,4 +42,5 @@ dataset = 'cityscapes';
 split = 'train';
 opts = get_opts(dataset, split);
 opts.list_path = 'lists/demo_id.txt';
+opts.visualise_results = true;
 run_sub(opts);

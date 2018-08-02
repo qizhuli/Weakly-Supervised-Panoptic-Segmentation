@@ -81,6 +81,7 @@ opts.ins_save_dir = 'pred_ins_clean';
 opts.force_overwrite = true;
 opts.save_sem = true;
 opts.save_ins = true;
+opts.visualise_results = false;
 
 % Select which stages to run
 opts.run_score_thresh = true;

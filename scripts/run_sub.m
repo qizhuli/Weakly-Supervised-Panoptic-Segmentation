@@ -51,9 +51,13 @@ for k = 1:length(opts.list)
     % semantic label cleaning
     results = clean_label(opts, results);
     % make instance label
-    results.ins_pred = ins_box_process(results.final_pred, results.gt_bboxes, opts.ignore_label);
+    [results.ins_pred, results.ins_info] = ins_box_process(results.final_pred, ...
+        results.gt_bboxes, opts.ignore_label);
     % save results
     save_results(opts, k, results);
+    % visualise results
+    visualise_results(opts, results);
+    
     if mod(k,100) == 0
         fprintf('[%s] Processed %d/%d\n', char(datetime), k, length(opts.list));
     end
