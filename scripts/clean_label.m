@@ -35,15 +35,7 @@ if opts.run_score_thresh
     results.final_pred = results.pred_threshed;
 end
 
-%% 2. Remove things outside bounding boxes
-% requires gt_bbox_masks + prediction
-if opts.run_apply_bbox_prior
-    results.pred_bbox_prior = apply_bbox_prior(results.final_pred, results.gt_bbox_masks, ...
-        opts.thing_classes, opts.ignore_label);
-    results.final_pred = results.pred_bbox_prior;
-end
-
-%% 3. Stuff class check, using image tags of crops
+%% 2. Stuff class check, using image tags of crops
 % requires gt_label + prediction
 if opts.run_check_image_level_tags
     results.pred_schk = check_image_level_tags(results.final_pred, results.gt_label, ...
@@ -51,11 +43,19 @@ if opts.run_check_image_level_tags
     results.final_pred = results.pred_schk;
 end
 
-%% 4. Merge with MCG&Grabcut cues
+%% 3. Merge with MCG&Grabcut cues
 if opts.run_merge_with_mcg_and_grabcut
     results.pred_merge_w_mandg = merge_mag_and_pred(results.mandg_pred, results.final_pred, ...
         opts.stuff_classes, opts.thing_classes, opts.ignore_label);
     results.final_pred = results.pred_merge_w_mandg;
+end
+
+%% 4. Remove things outside bounding boxes
+% requires gt_bbox_masks + prediction
+if opts.run_apply_bbox_prior
+    results.pred_bbox_prior = apply_bbox_prior(results.final_pred, results.gt_bbox_masks, ...
+        opts.thing_classes, opts.ignore_label);
+    results.final_pred = results.pred_bbox_prior;
 end
 
 %% 5. IoU check, fill low IoU with solid colour
