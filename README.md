@@ -1,14 +1,18 @@
 # Weakly- and Semi-Supervised Panoptic Segmentation
-by Qizhu Li\*, Anurag Arnab\*, Philip H.S. Torr
+by [Qizhu Li](https://qizhuli.github.io/)\*, [Anurag Arnab](http://www.robots.ox.ac.uk/~aarnab/)\*, [Philip H.S. Torr](https://scholar.google.com/citations?user=kPxa2w0AAAAJ&hl=en)
 
-This repo demonstrates the weakly supervised ground truth generation scheme presented in our paper *Weakly- and Semi-Supervised Panoptic Segmentation* published at ECCV 2018. The code has been cleaned-up and refactored, and should reproduce the results presented in the paper.
+This repository demonstrates the weakly supervised ground truth generation scheme presented in our paper *Weakly- and Semi-Supervised Panoptic Segmentation* published at ECCV 2018. The code has been cleaned-up and refactored, and should reproduce the results presented in the paper.
 
 For details, please refer to our [paper](#), and [project page](#).
 
-\* Equal first authorship
+![Summary](data/readme/summary.png)
+
+
+<sup><sub> \* Equal first authorship </sup></sub>
 
 ## Introduction
-In our weakly-supervised *panoptic* segmentation experiments, our models are supervised by 1) image-level tags (whether a class is present in an image), and 2), bounding boxes only for ''thing'' classes. By releasing the code, we aim to clarify some of the key ideas presented in the paper and attract more future research on this topic.
+In our weakly-supervised *panoptic* segmentation experiments, our models are supervised by 1) image-level tags and 2) bounding boxes, as shown in the figure above.
+We used image-level tags as supervision for "stuff" classes which do not have a defined extent and cannot be described well by tight bounding boxes. For "thing" classes, we used bounding boxes as our weak supervision. This code release clarifies the implementation details of the method presented in the paper.
 
 ## Iterative ground truth generation 
 For readers' convenience, we will give an outline of the proposed iterative ground truth generation pipeline, and provide demos for some of the key steps.
@@ -35,8 +39,8 @@ For readers' convenience, we will give an outline of the proposed iterative grou
     Please refer to `scripts/get_opts.m` for the options available. To reproduce the results presented in the paper, use the default setting, and set `opts.run_merge_with_mcg_and_grabcut` to `false` after four iterations of training, as the weakly supervised model by then produces better quality segmentation of ''thing'' classes than the original M&G masks.
 6. Repeat step 4 and 5 until training loss no longer reduces.
 
-## Cite
-If you find the code helpful in your research, please consider citing our paper:
+## Reference
+If you find the code helpful in your research, please cite our paper:
 
 ```
 @inproceedings{li2018wsps,
@@ -44,7 +48,7 @@ If you find the code helpful in your research, please consider citing our paper:
               Anurag Arnab and
               Philip H.S. Torr},
     title = {Weakly- and Semi-Supervised Panoptic Segmentation},
-    booktitle = {Proceedings of European Conference on Computer Vision (ECCV)},
+    booktitle = {European Conference on Computer Vision (ECCV)},
     year = {2018}
 }
 ```
