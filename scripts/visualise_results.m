@@ -29,7 +29,7 @@ if ~opts.visualise_results
     return;
 end
 
-f = figure('units','normalized','outerposition',[0.1 0.1 1 1], 'Visible', 'off');
+f = figure('units','normalized','outerposition',[0 0 1 1], 'Visible', 'off');
 
 ax(1) = subplot(2, 2, 1, 'replace');
 imshow(results.pred, opts.cmap);
