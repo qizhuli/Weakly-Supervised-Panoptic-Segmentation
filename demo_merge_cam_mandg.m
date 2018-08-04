@@ -15,17 +15,12 @@
 % This script demos generation of iterative ground truths for weakly-
 % supervised experiments.
 %
-% It post-process network predictions to produce iterative GT for training
-% in the next iteration
+% It merges CAM predictions with MCG&Grabcut masks to produce GT for 
+% the first round of iterative training
 % Inputs:
-%   1. results/pred_flat_feat/*.mat: the softmax scores of the predicted
-%   classes
-%   2. results/pred_sem_raw/*.png: the prediction made by the current
-%   weakly-supervised model
-%   3. results/mcg_and_grabcut/*.png: the combined cues from MCG and
-%   Grabcut. Optional, set opts.run_merge_with_mcg_and_grabcut = false to
-%   disable. To reproduce the results in our paper, disable after first 5
-%   iterations.
+%   1. results/cam/*.png: the CAMs obtained from a multi-class classifier
+%   2. results/mcg_and_grabcut/*.png: the combined cues from MCG and
+%   Grabcut.
 % ------------------------------------------------------------------------
 
 clearvars;
@@ -42,8 +37,17 @@ dataset = 'cityscapes';
 split = 'train';
 opts = get_opts(dataset, split);
 opts.list_path = 'lists/demo_id.txt';
+opts.pred_dir = 'cam';
+opts.sem_save_dir = 'pred_sem_cam_mandg_merged';
+opts.ins_save_dir = 'pred_ins_cam_mandg_merged';
+opts.run_score_thresh = false;
 opts.visualise_results = true;
 [opts, results] = run_sub(opts);
 
 % visualise
 visualise_results(opts, results);
+subplot(2,2,1);
+title('1. CAM prediction');
+subplot(2,2,2);
+imshow(results.mandg_pred, results.mandg_cmap);
+title('2. MCG&Grabcut Masks');
