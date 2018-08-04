@@ -36,7 +36,7 @@ For readers' convenience, we will give an outline of the proposed iterative grou
    ```
     The generated semantic and instance ground truth labels are saved at `results/pred_sem_clean` and `results/pred_ins_clean` respectively. 
     
-    Please refer to `scripts/get_opts.m` for the options available. To reproduce the results presented in the paper, use the default setting, and set `opts.run_merge_with_mcg_and_grabcut` to `false` after four iterations of training, as the weakly supervised model by then produces better quality segmentation of ''thing'' classes than the original M&G masks.
+    Please refer to `scripts/get_opts.m` for the options available. To reproduce the results presented in the paper, use the default setting, and set `opts.run_merge_with_mcg_and_grabcut` to `false` after five iterations of training, as the weakly supervised model by then produces better quality segmentation of ''thing'' classes than the original M&G masks.
 6. Repeat step 4 and 5 until training loss no longer reduces.
 
 ## Reference
