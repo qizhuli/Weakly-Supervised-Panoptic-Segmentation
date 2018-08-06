@@ -41,8 +41,8 @@ For readers' convenience, we will give an outline of the proposed iterative grou
     When post-processing network predictions of images from the Cityscapes `train_extra` split, make sure to use the following settings:
     ```
     opts.run_apply_bbox_prior = false;
-    opts.run_check_low_iou = false;
     opts.run_check_image_level_tags = false;
+    opts.save_ins = false;
     ```
     because the coarse annotation provided on the `train_extra` split trades off recall for precision, leading to inaccurate bounding box coordinates, and frequent occurrences of false negatives.
 6. Repeat step 4 and 5 until training loss no longer reduces.
