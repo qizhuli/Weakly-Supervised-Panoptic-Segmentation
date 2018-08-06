@@ -28,6 +28,13 @@ For readers' convenience, we will give an outline of the proposed iterative grou
    ```
     demo_merge_cam_mandg;
    ```
+   When post-processing network predictions of images from the Cityscapes `train_extra` split, make sure to use the following settings:
+   ```
+   opts.run_apply_bbox_prior = false;
+   opts.run_check_image_level_tags = false;
+   opts.save_ins = false;
+   ```
+   because the coarse annotation provided on the `train_extra` split trades off recall for precision, leading to inaccurate bounding box coordinates, and frequent occurrences of false negatives. This also applies to step 5.
 4. Using the generated ground truth, weakly-supervised models can be trained in the same way as a fully-supervised model. When the training loss converges, we make dense predictions using the model and also save the prediction scores. 
    - An example of dense prediction made by a weakly-supervised model is included at `results/pred_sem_raw/`, and an example of the corresponding prediction scores is provided at `results/pred_flat_feat/`. 
 5. The prediction and prediction scores (and optionally, the M&G masks) are used to generate the ground truth labels for next stage of iterative training. To see a demo of iterative ground truth generation, navigate to the root folder of this repo in MATLAB and run:
@@ -37,14 +44,6 @@ For readers' convenience, we will give an outline of the proposed iterative grou
     The generated semantic and instance ground truth labels are saved at `results/pred_sem_clean` and `results/pred_ins_clean` respectively. 
     
     Please refer to `scripts/get_opts.m` for the options available. To reproduce the results presented in the paper, use the default setting, and set `opts.run_merge_with_mcg_and_grabcut` to `false` after five iterations of training, as the weakly supervised model by then produces better quality segmentation of ''thing'' classes than the original M&G masks. 
-    
-    When post-processing network predictions of images from the Cityscapes `train_extra` split, make sure to use the following settings:
-    ```
-    opts.run_apply_bbox_prior = false;
-    opts.run_check_image_level_tags = false;
-    opts.save_ins = false;
-    ```
-    because the coarse annotation provided on the `train_extra` split trades off recall for precision, leading to inaccurate bounding box coordinates, and frequent occurrences of false negatives.
 6. Repeat step 4 and 5 until training loss no longer reduces.
 
 ## Reference
