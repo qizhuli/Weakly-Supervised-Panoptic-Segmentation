@@ -26,6 +26,7 @@
 clearvars;
 addpath scripts
 addpath utils
+addpath visualisation
 
 % Extract detections from Cityscapes ground truth file and save as .mat
 % this only need to be done once, as they do not change over iterative
@@ -45,9 +46,4 @@ opts.visualise_results = true;
 [opts, results] = run_sub(opts);
 
 % visualise
-visualise_results(opts, results);
-subplot(2,2,1);
-title('1. CAM prediction');
-subplot(2,2,2);
-imshow(results.mandg_pred, results.mandg_cmap);
-title('2. MCG&Grabcut Masks');
+visualise_results_cam_mandg(opts, results);

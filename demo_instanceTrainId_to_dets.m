@@ -17,6 +17,7 @@
 % generation of iterative ground truths for weakly-supervised experiments
 % ------------------------------------------------------------------------
 
+clearvars;
 addpath utils
 addpath scripts
 

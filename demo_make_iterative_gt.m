@@ -31,6 +31,7 @@
 clearvars;
 addpath scripts
 addpath utils
+addpath visualisation
 
 % Extract detections from Cityscapes ground truth file and save as .mat
 % this only need to be done once, as they do not change over iterative
@@ -46,4 +47,4 @@ opts.visualise_results = true;
 [opts, results] = run_sub(opts);
 
 % visualise
-visualise_results(opts, results);
+visualise_results_iterative_gt(opts, results);

@@ -23,7 +23,7 @@
 %  - See scripts/run_sub.m
 % ------------------------------------------------------------------------
 
-function visualise_results(opts, results)
+function visualise_results_iterative_gt(opts, results)
 
 if ~opts.visualise_results
     return;
