@@ -57,11 +57,13 @@ for k = 1:numel(unique_ids)
     
     valid = false;
     is_grp = false;
+    is_stuff = false;
     id = unique_ids(k);
     
     if is_panoptic && ismember(id, stuff_classes)
         % CASE 2
         valid = true;
+        is_stuff = true;
         xmin = num2str(0);
         ymin = num2str(0);
         xmax = num2str(canvas_dims(2) - 1);
@@ -100,6 +102,7 @@ for k = 1:numel(unique_ids)
         dets.annotation.object(instance_counter).bndbox.xmax = xmax;
         dets.annotation.object(instance_counter).bndbox.ymax = ymax;
         dets.annotation.object(instance_counter).is_grp = num2str(is_grp);
+        dets.annotation.object(instance_counter).is_stuff = num2str(is_stuff);
     end
     
 end
