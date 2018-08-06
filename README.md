@@ -36,7 +36,15 @@ For readers' convenience, we will give an outline of the proposed iterative grou
    ```
     The generated semantic and instance ground truth labels are saved at `results/pred_sem_clean` and `results/pred_ins_clean` respectively. 
     
-    Please refer to `scripts/get_opts.m` for the options available. To reproduce the results presented in the paper, use the default setting, and set `opts.run_merge_with_mcg_and_grabcut` to `false` after five iterations of training, as the weakly supervised model by then produces better quality segmentation of ''thing'' classes than the original M&G masks.
+    Please refer to `scripts/get_opts.m` for the options available. To reproduce the results presented in the paper, use the default setting, and set `opts.run_merge_with_mcg_and_grabcut` to `false` after five iterations of training, as the weakly supervised model by then produces better quality segmentation of ''thing'' classes than the original M&G masks. 
+    
+    When post-processing network predictions of images from the Cityscapes `train_extra` split, make sure to use the following settings:
+    ```
+    opts.run_apply_bbox_prior = false;
+    opts.run_check_low_iou = false;
+    opts.run_check_image_level_tags = false;
+    ```
+    because the coarse annotation provided on the `train_extra` split trades off recall for precision, leading to inaccurate bounding box coordinates, and frequent occurrences of false negatives.
 6. Repeat step 4 and 5 until training loss no longer reduces.
 
 ## Reference
