@@ -13,11 +13,11 @@
 % Please consider citing the paper if you use this code.
 % ------------------------------------------------------------------------
 % This script demos extracting bounding box information from Cityscapes
-% instance ground truth (*_gtFine_instanceTrainIds.png files) for
+% instance ground truth (*_gt<Fine,Coarse>_instanceTrainIds.png files) for
 % generation of iterative ground truths for weakly-supervised experiments
 %
 % It is a batch processor. Set split to 'train', 'val', or 'train_extra' 
-% as appropriate. Make sure the instance ground truth files are found in
+% as desired. Make sure the instance ground truth files are found in
 % data/Cityscapes/gt<Fine,Coarse>/<train,val,train_extra>/ respectively.
 % If `visualise` is set to true, make sure the original RGB files are 
 % available in data/Cityscapes/leftImg8bit/<train,val,train_extra>/ 

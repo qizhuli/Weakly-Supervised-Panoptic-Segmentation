@@ -21,9 +21,14 @@ For readers' convenience, we will give an outline of the proposed iterative grou
    - Download the fixed image crops with image-level tags [here](#) to train your own classifier. For convenience, the pixel-level semantic label of the crops are also included, though they should not be used in training.
    - The CAMs we produced are available for download [here](#).
 2. In parallel, we extract bounding box annotations from Cityscapes ground truth files, and then run MCG (a segment-proposal algorithm) and Grabcut (a classic foreground segmentation technique given a bounding-box prior) on the training images to generate foreground masks inside each annotated bounding box. MCG and Grabcut masks are merged following the rule that only regions where both have consensus are given the predicted label; otherwise an "ignore" label is assigned.
-   - The extracted bounding boxes (saved in .mat format) can be downloaded [here](#). Alternatively, we also provide a demo script `demo_instanceTrainId_to_dets.m` and a batch script `batch_instanceTrainId_to_dets.m` for you to try it out yourself. The demo is self-contained; to run the batch script, make sure to
-        1. download the [official Cityscapes scripts repository](https://github.com/mcordts/cityscapesScripts),
-        2. inside the above repository, navigate to `cityscapesscripts/preparation` and run `python createTrainIdInstanceImgs.py`; this command requires an environment variable `CITYSCAPES_DATASTET=path/to/your/cityscapes/data/folder`.
+   - The extracted bounding boxes (saved in .mat format) can be downloaded [here](#). Alternatively, we also provide a demo script `demo_instanceTrainId_to_dets.m` and a batch script `batch_instanceTrainId_to_dets.m` for you to make them yourself. The demo is self-contained; However, before running the batch script, make sure to
+        1. Download the [official Cityscapes scripts repository](https://github.com/mcordts/cityscapesScripts);
+        2. Inside the above repository, navigate to `cityscapesscripts/preparation` and run 
+            ```
+            python createTrainIdInstanceImgs.py
+            ```
+            This command requires an environment variable `CITYSCAPES_DATASTET=path/to/your/cityscapes/data/folder` to be set. These two steps produce the `*_instanceTrainIds.png` files required by our batch script;
+        3. Navigate back to this repository, and place/symlink your `gtFine` and `gtCoarse` folders inside `data/Cityscapes/` folder so that they are visible to our batch script.
    - Please see [here](#) for details on MCG.
    - We use the [OpenCV implementation](https://docs.opencv.org/3.2.0/d8/d83/tutorial_py_grabcut.html) of Grabcut in our experiments.
    - The merged M&G masks we produced are available for download [here](#).
