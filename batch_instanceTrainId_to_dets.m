@@ -31,7 +31,7 @@ addpath visualisation
 
 %% Configure
 
-split = 'val'; % train, val or train_extra
+split = 'train'; % train, val or train_extra
 
 % set is_panoptic flag to include image-level stuff class dets
 is_panoptic = true;
