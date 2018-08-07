@@ -24,6 +24,7 @@ For readers' convenience, we will give an outline of the proposed iterative grou
    - The extracted bounding boxes (saved in .mat format) can be downloaded [here](#). Alternatively, we also provide a demo script `demo_instanceTrainId_to_dets.m` and a batch script `batch_instanceTrainId_to_dets.m` for you to make them yourself. The demo is self-contained; However, before running the batch script, make sure to
         1. Download the [official Cityscapes scripts repository](https://github.com/mcordts/cityscapesScripts);
         2. Inside the above repository, navigate to `cityscapesscripts/preparation` and run 
+        
             ```
             python createTrainIdInstanceImgs.py
             ```
