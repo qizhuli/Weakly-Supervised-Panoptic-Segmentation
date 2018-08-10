@@ -46,6 +46,7 @@ for k = 1:length(annotation.annotation.object)
     xmax = str2double(bndbox.xmax)+1;
     ymax = str2double(bndbox.ymax)+1;
     is_grp = logical(str2double(annotation.annotation.object(k).is_grp));
+    is_stuff = logical(str2double(annotation.annotation.object(k).is_stuff));
     xmin = max(1, xmin);
     ymin = max(1, ymin);
     xmax = min(canvas_size(2), xmax);
@@ -54,6 +55,7 @@ for k = 1:length(annotation.annotation.object)
     annotation.annotation.object(k).area = (xmax - xmin + 1) * (ymax - ymin + 1);
     annotation.annotation.object(k).class = class_id;
     annotation.annotation.object(k).is_grp = is_grp;
+    annotation.annotation.object(k).is_stuff = is_stuff;
     if isempty(bbox_masks{class_id + 1})
         class_mask = false(canvas_size);
     else
