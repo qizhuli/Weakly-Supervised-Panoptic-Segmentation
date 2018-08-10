@@ -17,7 +17,7 @@
 % thresh, then the bounding box is filled with appropriate train id. 
 %  INPUT:
 %  - pred_label : prediction
-%  - annotation : GT boxes, area and class
+%  - annotation : GT boxes, area, class, and whether is thing group
 %  - thresh   : IoU threshold below which filling is carried out 
 %  - do_not_alter_existing_things : when set to true, the filling will 
 %                                 not overwrite existing thing predictions
@@ -38,6 +38,7 @@ function modified_label = check_low_iou(pred_label, annotation, thresh, do_not_a
 %       L> bbox:   [xmin, ymin, xmax, ymax]
 %          area:   rectangular area of bbox
 %          class:  class_id as used in label
+%..........is_grp:.flag whether the bbox is for a thing group
 
 modified_label = pred_label;
 stuff_classes = 0:10;
@@ -60,6 +61,12 @@ for k = 1:numel(annotation.object)
     gt_class = annotation.object(ind).class;
     % skip stuff classes since their bounding boxes are image-level
     if ismember(gt_class, stuff_classes)
+        continue;
+    end
+    % skip thing groups if is_grp is a field in annotation
+    % thing group boxes typically have very low precision and high recall,
+    % thus unsuitable for this post-processing option.
+    if isfield(annotation.object(ind), 'is_grp') && annotation.object(ind).is_grp
         continue;
     end
     % make a binary mask for the gt bbox
