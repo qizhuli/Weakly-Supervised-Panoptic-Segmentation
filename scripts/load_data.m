@@ -33,10 +33,12 @@ results.id = opts.list{k};
 % pred, pred_scores, gt_bbox_masks, gt_bboxes, gt_label, mandg_pred (MCG&Grabcut)
 [results.pred, results.cmap] = imread(fullfile(opts.pred_root, opts.pred_dir, ...
     sprintf(opts.pred_template, results.id)));
-temp = load(fullfile(opts.pred_root, opts.pred_score_dir, ...
-    sprintf(opts.pred_score_template, results.id)));
-temp_name = fieldnames(temp);
-results.pred_scores = temp.(temp_name{1});
+if opts.run_score_thresh
+    temp = load(fullfile(opts.pred_root, opts.pred_score_dir, ...
+        sprintf(opts.pred_score_template, results.id)));
+    temp_name = fieldnames(temp);
+    results.pred_scores = temp.(temp_name{1});
+end
 [results.gt_bbox_masks, results.gt_bboxes] = make_bbox_masks(fullfile(opts.data_root, opts.annotation_dir, ...
     sprintf(opts.annotation_template, results.id)), opts.objectNames, opts.canvas_size);
 city = strtok(results.id, '_');
