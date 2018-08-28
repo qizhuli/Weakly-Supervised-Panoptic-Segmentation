@@ -71,14 +71,14 @@ For readers' convenience, we will give an outline of the proposed iterative grou
         - train_extra (608MB): [Dropbox](https://www.dropbox.com/s/u45mtdvb3xqt2di/gtCoarse_semantic_400x500crops_train_extra.zip?dl=0) or [BaiduYun](https://pan.baidu.com/s/12Jf0XwvValq2MtFKDRMTmg)
         - val (16.2MB): [Dropbox](https://www.dropbox.com/s/9o9unhqnijz3bmm/gtFine_semantic_400x500crops_val.zip?dl=0) or [BaiduYun](https://pan.baidu.com/s/14RLV--kmnyhRQXQrTtwQ_A)
 2. <a id="downloads-cam"></a>CAMs:
-    - train+train_extra (665MB): [Dropbox](https://www.dropbox.com/s/9oc0j6a4k1amod0/cam.zip?dl=0) or [BaiduYun](https://pan.baidu.com/s/1DjU96lnIlUkE1TBFNp3XUw)
+    - train+train_extra (682MB): [Dropbox](https://www.dropbox.com/s/24p60caieq3skik/cam.zip?dl=0) or [BaiduYun](https://pan.baidu.com/s/1zhgzw0IU7r9YBBBmwwRTzA)
 3. <a id="downloads-bboxes"></a>Extracted Cityscapes bounding boxes (.mat format):
     - train+val (7.6GB): [Dropbox](https://www.dropbox.com/s/bt7tpom8nohtwk8/gtFine_bboxes.zip?dl=0) or [BaiduYun](https://pan.baidu.com/s/1jXEp-ibmXkQz-bi1Oe6FtA)
     - train_extra (44.2GB): [Dropbox](https://www.dropbox.com/s/tuv4r44sr5vt15z/gtCoarse_bboxes.zip?dl=0) or [BaiduYun](https://pan.baidu.com/s/1p8bpZ2srcNmHlkCrLnPH2Q)
 4. <a id="downloads-mandg"></a>Merged MCG&Grabcut masks:
     - train+train_extra (99.8MB): [Dropbox](https://www.dropbox.com/s/skwv2f8ny0aym9j/mcg_and_grabcut.zip?dl=0) or [BaiduYun](https://pan.baidu.com/s/1VvcodHbuZz4nJhVego5jwA)
 5. <a id="downloads-cam-mandg-merged"></a>CAMs merged with MCG&Grabcut masks:
-    - train+train_extra (764MB): [Dropbox](https://www.dropbox.com/s/t3cltqfrx1k63bf/cam_mandg_merged.zip?dl=0) or [BaiduYun](https://pan.baidu.com/s/1_z1pHozxAKpcCuVoDcJO1g)
+    - train+train_extra (764MB): [Dropbox](https://www.dropbox.com/s/t24gqpkyrytr7ai/cam_mandg_merged.zip?dl=0) or [BaiduYun](https://pan.baidu.com/s/1vI2tzbzXCEO3tij4RnMzgg)
 
 Note that due to file size limit set by **BaiduYun**, some of the larger files had to be split into several chunks in order to be uploaded. These files are named as `filename.zip.part##`, where `filename` is the original file name excluding the extension, and `##` is a two digit part index. After you have downloaded all the parts, `cd` to the folder where they are saved, and use the following command to join them back together:
 ```sh
