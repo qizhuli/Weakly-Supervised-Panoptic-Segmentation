@@ -33,7 +33,11 @@ function skip = save_results(opts, k, results)
 
 pred_sem_save_path = fullfile(opts.pred_root, opts.sem_save_dir, sprintf(opts.pred_template, opts.list{k}));
 pred_ins_save_path = fullfile(opts.pred_root, opts.ins_save_dir, sprintf(opts.pred_template, opts.list{k}));
-if exist(pred_sem_save_path, 'file') && exist(pred_ins_save_path, 'file') && ~opts.force_overwrite
+
+sem_ok = ~opts.save_sem || exist(pred_sem_save_path, 'file');
+ins_ok = ~opts.save_ins || exist(pred_ins_save_path, 'file');
+
+if sem_ok && ins_ok && ~opts.force_overwrite
     skip = true;
     return;
 else
