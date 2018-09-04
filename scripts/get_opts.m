@@ -75,7 +75,7 @@ opts.schk_crop_size = [400, 500];
 % General settings
 opts.pred_dir = 'pred_sem_raw';
 opts.pred_score_dir = 'pred_flat_feat';
-opts.mcg_and_grabcut_dir = 'mcg_and_grabcut';
+opts.mcg_and_grabcut_dir = fullfile('mcg_and_grabcut', split);
 opts.sem_save_dir = 'pred_sem_clean';
 opts.ins_save_dir = 'pred_ins_clean';
 opts.force_overwrite = true;
