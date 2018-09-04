@@ -92,12 +92,13 @@ The above does not apply to files downloaded from Dropbox.
 If you find the code helpful in your research, please cite our paper:
 
 ```tex
-@inproceedings{li2018wsps,
-    author = {Qizhu Li and
-              Anurag Arnab and
-              Philip H.S. Torr},
+@InProceedings{Li_2018_ECCV,
+    author = {Li, Qizhu and 
+              Arnab, Anurag and 
+              Torr, Philip H.S.},
     title = {Weakly- and Semi-Supervised Panoptic Segmentation},
-    booktitle = {European Conference on Computer Vision (ECCV)},
+    booktitle = {The European Conference on Computer Vision (ECCV)},
+    month = {September},
     year = {2018}
 }
 ```
