@@ -16,11 +16,12 @@
 % supervised experiments.
 %
 % It merges CAM predictions with MCG&Grabcut masks to produce GT for 
-% the first round of iterative training
-% Inputs:
-%   1. results/cam/*.png: the CAMs obtained from a multi-class classifier
-%   2. results/mcg_and_grabcut/*.png: the combined cues from MCG and
-%   Grabcut.
+% the first round of iterative training.
+%  INPUT:
+%  - results/cam/<split>/*.png: the CAMs obtained from a multi-class 
+%  classifier.
+%  - results/mcg_and_grabcut/<split>/*.png: the combined cues from MCG
+%  and Grabcut.
 % ------------------------------------------------------------------------
 
 clearvars;

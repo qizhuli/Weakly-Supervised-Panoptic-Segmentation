@@ -14,7 +14,7 @@
 % ------------------------------------------------------------------------
 % This function produces instance prediction from semantic prediction 
 % using cues from GT bounding boxes. Regions where multiple bounding boxes 
-% of the same class overlap is marked with ignore_label in instance pred
+% of the same class overlap is marked with ignore_label in instance pred.
 %  INPUT:
 %  - sem_label : semantic prediction
 %  - annotation : GT boxes, area and class

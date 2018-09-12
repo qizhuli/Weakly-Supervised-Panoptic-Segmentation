@@ -15,17 +15,17 @@
 % This script demos generation of iterative ground truths for weakly-
 % supervised experiments.
 %
-% It post-process network predictions to produce iterative GT for training
-% in the next iteration
-% Inputs:
-%   1. results/pred_flat_feat/*.mat: the softmax scores of the predicted
-%   classes
-%   2. results/pred_sem_raw/*.png: the prediction made by the current
-%   weakly-supervised model
-%   3. results/mcg_and_grabcut/*.png: the combined cues from MCG and
-%   Grabcut. Optional, set opts.run_merge_with_mcg_and_grabcut = false to
-%   disable. To reproduce the results in our paper, disable after first 5
-%   iterations.
+% It post-processes network predictions to produce iterative GT for 
+% training in the next iteration.
+%  INPUT:
+%  - results/pred_flat_feat/*.mat: the softmax scores of the predicted
+%  classes.
+%  - results/pred_sem_raw/*.png: the prediction made by the current
+%  weakly-supervised model.
+%  - results/mcg_and_grabcut/<split>/*.png: the combined cues from MCG 
+%  and Grabcut. Optional. Set opts.run_merge_with_mcg_and_grabcut = false
+%  to disable. To reproduce the results in our paper, disable after first 
+%  5 iterations.
 % ------------------------------------------------------------------------
 
 clearvars;

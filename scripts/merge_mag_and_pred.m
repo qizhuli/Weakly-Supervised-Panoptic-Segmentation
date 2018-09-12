@@ -17,9 +17,9 @@
 %  INPUT:
 %  - mag : MCG&Grabcut output
 %  - pred: semantic prediction
-%  - stuff_clases: stuff class ids, e.g. 0:10
+%  - stuff_clases : stuff class ids, e.g. 0:10
 %  - thing_classes: thing class ids, e.g. 11:18
-%  - ignore_label  : label to ignore, normally 255
+%  - ignore_label : label to ignore, normally 255
 %
 %  OUTPUT:
 %  - merged_label: the combined label

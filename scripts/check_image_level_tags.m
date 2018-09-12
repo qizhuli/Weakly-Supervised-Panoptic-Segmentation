@@ -14,7 +14,7 @@
 % ------------------------------------------------------------------------
 % This function checks prediction against the image-level tags. If a class
 % is predicted by network but not present as indicated by image-level 
-% tags, the predicted label is changed to ignore_label
+% tags, the predicted label is changed to ignore_label.
 %  INPUT:
 %  - pred_label : prediction
 %  - gt_label   : ground truth label to generate image level tags
