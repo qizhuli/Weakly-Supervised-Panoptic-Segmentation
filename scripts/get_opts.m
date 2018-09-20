@@ -89,4 +89,7 @@ opts.run_apply_bbox_prior = true;
 opts.run_check_low_iou = true;
 opts.run_check_image_level_tags = true;
 opts.run_merge_with_mcg_and_grabcut = true;
+
+% whether run instance GT generation
+opts.run_ins_box_process = true;
 end

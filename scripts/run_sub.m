@@ -35,13 +35,19 @@ opts.cmap = temp.cmap;
 temp = load(opts.objectNames_path);
 opts.objectNames = temp.objectNames;
 
+% opts.save_ins is forced to false if opts.run_ins_process = false
+opts.save_ins = opts.save_ins && opts.run_ins_process;
+
 % make dirs
-if ~exist(fullfile(opts.pred_root, opts.sem_save_dir), 'dir')
+if ~exist(fullfile(opts.pred_root, opts.sem_save_dir), 'dir') && opts.save_sem
     mkdir(fullfile(opts.pred_root, opts.sem_save_dir));
 end
-if ~exist(fullfile(opts.pred_root, opts.ins_save_dir), 'dir')
+if ~exist(fullfile(opts.pred_root, opts.ins_save_dir), 'dir') && opts.save_ins
     mkdir(fullfile(opts.pred_root, opts.ins_save_dir));
 end
+
+% init results
+results = struct;
 
 % main process
 fprintf('[%s] Processing %d image(s)...\n', char(datetime), length(opts.list));
@@ -55,8 +61,10 @@ for k = 1:length(opts.list)
     % semantic label cleaning
     results = clean_label(opts, results);
     % make instance label
-    [results.ins_pred, results.ins_info] = ins_box_process(results.final_pred, ...
-        results.gt_bboxes, opts.ignore_label);
+    if opts.run_ins_box_process
+        [results.ins_pred, results.ins_info] = ins_box_process(results.final_pred, ...
+            results.gt_bboxes, opts.ignore_label);
+    end
     % save results
     save_results(opts, k, results);
     

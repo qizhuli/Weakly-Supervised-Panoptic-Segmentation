@@ -39,13 +39,19 @@ if opts.run_score_thresh
     temp_name = fieldnames(temp);
     results.pred_scores = temp.(temp_name{1});
 end
-[results.gt_bbox_masks, results.gt_bboxes] = make_bbox_masks(fullfile(opts.data_root, opts.annotation_dir, ...
-    sprintf(opts.annotation_template, results.id)), opts.objectNames, opts.canvas_size);
-city = strtok(results.id, '_');
-results.gt_label = imread(fullfile(opts.data_root, opts.gt_label_dir, city, ...
-    sprintf(opts.gt_label_template, results.id)));
-[results.mandg_pred, results.mandg_cmap] = imread(fullfile(opts.pred_root, opts.mcg_and_grabcut_dir, ...
-    sprintf(opts.mcg_and_grabcut_template, results.id)));
+if opts.run_apply_bbox_prior || opts.run_check_low_iou || opts.run_ins_box_process
+    [results.gt_bbox_masks, results.gt_bboxes] = make_bbox_masks(fullfile(opts.data_root, opts.annotation_dir, ...
+        sprintf(opts.annotation_template, results.id)), opts.objectNames, opts.canvas_size);
+end
+if opts.run_check_image_level_tags
+    city = strtok(results.id, '_');
+    results.gt_label = imread(fullfile(opts.data_root, opts.gt_label_dir, city, ...
+        sprintf(opts.gt_label_template, results.id)));
+end
+if opts.run_merge_with_mcg_and_grabcut
+    [results.mandg_pred, results.mandg_cmap] = imread(fullfile(opts.pred_root, opts.mcg_and_grabcut_dir, ...
+        sprintf(opts.mcg_and_grabcut_template, results.id)));
+end
 
 results.final_pred = results.pred;
 
