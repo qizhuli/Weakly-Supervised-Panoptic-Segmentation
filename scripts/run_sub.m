@@ -36,7 +36,7 @@ temp = load(opts.objectNames_path);
 opts.objectNames = temp.objectNames;
 
 % opts.save_ins is forced to false if opts.run_ins_process = false
-opts.save_ins = opts.save_ins && opts.run_ins_process;
+opts.save_ins = opts.save_ins && opts.run_ins_box_process;
 
 % make dirs
 if ~exist(fullfile(opts.pred_root, opts.sem_save_dir), 'dir') && opts.save_sem
